@@ -98,6 +98,84 @@ export const products: Product[] = [
       "Support pour tiller et stick Winwing : montage stable, ergonomique, pensé pour les cockpits flight sim.",
   },
   {
+    id: "prod-tee-reglable-rugby",
+    slug: "tee-reglable-rugby",
+    name: "Tee réglable Rugby",
+    shortDescription:
+      "Maintient le ballon à la hauteur et l'angle voulus pour vos coups de pied.",
+    purpose:
+      "Ce tee réglable permet d'ajuster la hauteur du ballon selon votre technique (pénalité, transformation, coup d'envoi). La base large assure la stabilité au sol, et le support supérieur maintient le ballon en position pour un kick plus régulier.",
+    howToUse:
+      "Vissez ou dévissez la partie supérieure pour régler la hauteur. Placez le ballon sur le support incliné, puis réalisez votre coup de pied. Démontez les deux pièces pour un rangement compact.",
+    category: "sport",
+    sportSubcategory: "rugby",
+    type: "accessoire",
+    price: 19.9,
+    badge: "nouveau",
+    isNew: true,
+    isPopular: true,
+    images: [
+      {
+        src: "/products/tee-reglable-rugby/01-principal.png",
+        alt: "Tee réglable Rugby avec ballon en position de tir",
+        type: "situ",
+      },
+      {
+        src: "/products/tee-reglable-rugby/02-produit.png",
+        alt: "Tee réglable Rugby — vue produit",
+        type: "alone",
+      },
+      {
+        src: "/products/tee-reglable-rugby/03-angle.png",
+        alt: "Tee réglable Rugby — vue de profil",
+        type: "detail",
+      },
+      {
+        src: "/products/tee-reglable-rugby/04-demonte.png",
+        alt: "Tee réglable Rugby démonté — base et pièce filetée",
+        type: "detail",
+      },
+      {
+        src: "/products/tee-reglable-rugby/05-detail.png",
+        alt: "Détail du système de réglage en hauteur du tee rugby",
+        type: "dimensions",
+      },
+    ],
+    compatibleWith: [
+      { brand: "Universel", model: "Ballon de rugby (entraînement / match)" },
+    ],
+    specs: {
+      material: "À confirmer",
+      dimensions: "Hauteur réglable",
+      fabrication: "Fabrication soignée",
+      color: "Bleu",
+      finish: "Deux pièces filetées — montage / démontage rapide",
+    },
+    installationSteps: [
+      {
+        title: "Assembler le tee",
+        description:
+          "Vissez la pièce supérieure dans la base jusqu'à la hauteur souhaitée.",
+      },
+      {
+        title: "Positionner le ballon",
+        description:
+          "Placez le ballon sur le support incliné pour l'angle de tir voulu.",
+      },
+      {
+        title: "Ranger",
+        description:
+          "Dévissez les deux pièces pour un rangement compact dans le sac.",
+      },
+    ],
+    relatedProductIds: ["demo-10"],
+    frequentlyBoughtWith: ["demo-10"],
+    inStock: true,
+    metaTitle: "Tee réglable Rugby | AXIOM Sport",
+    metaDescription:
+      "Tee de rugby à hauteur réglable : stabilité au sol, angle de ballon maîtrisé pour pénalités et transformations.",
+  },
+  {
     id: "demo-01",
     slug: "cache-protection-equipement",
     name: "Cache de protection pour votre équipement",
