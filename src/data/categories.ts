@@ -3,19 +3,21 @@ export const categories = [
     id: "flight-sim",
     slug: "flight-sim",
     code: "CAT 01",
-    title: "Flight Sim",
+    title: "Flight Simulator",
     description:
       "Accessoires, protections, supports et pièces pour simulateur de vol.",
     href: "/flight-sim",
+    icon: "🛩️",
   },
   {
-    id: "simulation",
-    slug: "simulation",
+    id: "car-sim",
+    slug: "car-sim",
     code: "CAT 02",
-    title: "Simulation",
+    title: "Car Simulator",
     description:
-      "Accessoires pour setups et équipements de simulation.",
-    href: "/simulation",
+      "Accessoires pour setups sim racing et équipements automobile.",
+    href: "/car-sim",
+    icon: "🏎️",
   },
   {
     id: "pieces-pratiques",
@@ -25,6 +27,7 @@ export const categories = [
     description:
       "Supports, adaptateurs, organisation, petites pièces utiles.",
     href: "/pieces-pratiques",
+    icon: "🔧",
   },
   {
     id: "sur-mesure",
@@ -34,6 +37,7 @@ export const categories = [
     description:
       "Une pièce spécifique ? Nous pouvons étudier votre besoin.",
     href: "/sur-mesure",
+    icon: "🛠️",
   },
 ] as const;
 

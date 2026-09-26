@@ -2,7 +2,7 @@
 
 export type ProductCategory =
   | "flight-sim"
-  | "simulation"
+  | "car-sim"
   | "pieces-pratiques"
   | "packs"
   | "sur-mesure";
@@ -89,6 +89,21 @@ export interface CartItem {
   quantity: number;
   variantId?: string;
   colorId?: string;
+  /** Lot personnalisé composé par le client */
+  customLot?: {
+    id: string;
+    items: { productId: string; quantity: number; unitPrice: number; name: string }[];
+    discountPercent: number;
+    subtotal: number;
+    total: number;
+  };
+}
+
+export interface LotDiscountTier {
+  /** Quantité minimale d'articles dans le lot */
+  minQuantity: number;
+  /** Réduction en % (ex. 5 = -5 %) */
+  discountPercent: number;
 }
 
 export interface SiteConfig {

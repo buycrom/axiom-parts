@@ -1,22 +1,51 @@
 @import "tailwindcss";
 
 @theme {
-  --color-axiom-bg: #0e1013;
-  --color-axiom-surface: #161a1f;
-  --color-axiom-elevated: #1c2128;
-  --color-axiom-border: #2a3139;
-  --color-axiom-muted: #8b939e;
-  --color-axiom-text: #f2f4f6;
+  --color-axiom-bg: var(--axiom-bg);
+  --color-axiom-surface: var(--axiom-surface);
+  --color-axiom-elevated: var(--axiom-elevated);
+  --color-axiom-border: var(--axiom-border);
+  --color-axiom-muted: var(--axiom-muted);
+  --color-axiom-text: var(--axiom-text);
   --color-axiom-accent: #ff6b2c;
   --color-axiom-accent-hover: #ff824d;
   --color-axiom-accent-dim: rgba(255, 107, 44, 0.12);
   --color-axiom-cream: #f4f5f7;
   --color-axiom-cream-text: #12151a;
-  --color-axiom-success: #3dd68c;
+  --color-axiom-success: var(--axiom-success);
 
   --font-display: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
   --font-body: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-ibm-plex), ui-monospace, monospace;
+}
+
+/* Mode sombre (défaut) */
+:root,
+html.dark {
+  --axiom-bg: #0e1013;
+  --axiom-surface: #161a1f;
+  --axiom-elevated: #1c2128;
+  --axiom-border: #2a3139;
+  --axiom-muted: #8b939e;
+  --axiom-text: #f2f4f6;
+  --axiom-success: #3dd68c;
+  color-scheme: dark;
+}
+
+/* Mode clair */
+html.light {
+  --axiom-bg: #f3f4f6;
+  --axiom-surface: #ffffff;
+  --axiom-elevated: #eef0f3;
+  --axiom-border: #d5dae0;
+  --axiom-muted: #5c6570;
+  --axiom-text: #12151a;
+  --axiom-success: #1a9e5c;
+  color-scheme: light;
+}
+
+html.light .instrument-label {
+  color: #6b7380;
 }
 
 @layer base {
@@ -26,6 +55,7 @@
 
   body {
     @apply bg-axiom-bg text-axiom-text font-body antialiased;
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
 
   ::selection {

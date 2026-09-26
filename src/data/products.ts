@@ -107,7 +107,7 @@ export const products: Product[] = [
       "Offre un ancrage stable à votre équipement sur bureau ou cockpit. Réduit les micro-mouvements et libère de l'espace de travail.",
     howToUse:
       "Fixez le support à la surface prévue, puis installez votre équipement selon le guide fourni.",
-    category: "simulation",
+    category: "car-sim",
     type: "support",
     price: 22.9,
     badge: "nouveau",

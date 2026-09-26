@@ -1,4 +1,4 @@
-import type { SiteConfig } from "@/types";
+import type { SiteConfig, LotDiscountTier } from "@/types";
 
 /**
  * Configuration marque — à adapter selon les infos réelles.
@@ -16,12 +16,22 @@ export const siteConfig: SiteConfig = {
   // freeShippingThreshold: 60,
 };
 
+/**
+ * Réductions lots personnalisés — modifier librement.
+ * Le palier le plus élevé atteint s'applique (quantité totale d'articles dans le lot).
+ */
+export const lotDiscountTiers: LotDiscountTier[] = [
+  { minQuantity: 3, discountPercent: 5 },
+  { minQuantity: 5, discountPercent: 10 },
+  { minQuantity: 8, discountPercent: 15 },
+];
+
 export const navLinks = [
-  { href: "/boutique", label: "Boutique" },
-  { href: "/flight-sim", label: "Flight Sim" },
-  { href: "/simulation", label: "Simulation" },
-  { href: "/pieces-pratiques", label: "Pièces pratiques" },
-  { href: "/packs", label: "Packs" },
-  { href: "/sur-mesure", label: "Sur mesure" },
-  { href: "/a-propos", label: "À propos" },
+  { href: "/flight-sim", label: "Flight Simulator", icon: "🛩️" },
+  { href: "/car-sim", label: "Car Simulator", icon: "🏎️" },
+  { href: "/packs", label: "Packs", icon: "📦" },
+  { href: "/pieces-pratiques", label: "Pièces pratiques", icon: "🔧" },
+  { href: "/boutique", label: "Boutique", icon: "🛍️" },
+  { href: "/sur-mesure", label: "Sur mesure", icon: "🛠️" },
+  { href: "/a-propos", label: "À propos", icon: "ℹ️" },
 ] as const;

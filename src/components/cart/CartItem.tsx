@@ -11,16 +11,96 @@ export function CartItemRow({
   quantity,
   variantId,
   colorId,
+  customLot,
 }: {
   productId: string;
   quantity: number;
   variantId?: string;
   colorId?: string;
+  customLot?: {
+    id: string;
+    items: { productId: string; quantity: number; unitPrice: number; name: string }[];
+    discountPercent: number;
+    subtotal: number;
+    total: number;
+  };
 }) {
   const updateQuantity = useCartStore((s) => s.updateQuantity);
   const removeItem = useCartStore((s) => s.removeItem);
-  const product = getProductById(productId);
 
+  if (customLot) {
+    return (
+      <div className="border-b border-axiom-border py-4">
+        <div className="flex items-start justify-between gap-2">
+          <div>
+            <p className="instrument-label mb-1">LOT PERSONNALISÉ</p>
+            <p className="font-display text-sm font-semibold">
+              Lot composé ({customLot.items.reduce((s, i) => s + i.quantity, 0)}{" "}
+              articles)
+            </p>
+            {customLot.discountPercent > 0 && (
+              <p className="mt-1 font-mono text-xs text-axiom-success">
+                −{customLot.discountPercent}% appliqué
+              </p>
+            )}
+          </div>
+          <button
+            type="button"
+            onClick={() => removeItem(productId)}
+            className="shrink-0 p-1 text-axiom-muted hover:text-axiom-accent"
+            aria-label="Retirer du panier"
+          >
+            <Trash2 className="h-4 w-4" />
+          </button>
+        </div>
+        <ul className="mt-2 space-y-1">
+          {customLot.items.map((item) => (
+            <li
+              key={item.productId}
+              className="font-mono text-[10px] text-axiom-muted"
+            >
+              {item.quantity}× {item.name}
+            </li>
+          ))}
+        </ul>
+        <div className="mt-3 flex items-center justify-between">
+          <div className="inline-flex items-center border border-axiom-border">
+            <button
+              type="button"
+              className="p-1.5 text-axiom-muted hover:text-axiom-text"
+              onClick={() => updateQuantity(productId, quantity - 1)}
+              aria-label="Diminuer"
+            >
+              <Minus className="h-3.5 w-3.5" />
+            </button>
+            <span className="min-w-[2rem] text-center font-mono text-sm">
+              {quantity}
+            </span>
+            <button
+              type="button"
+              className="p-1.5 text-axiom-muted hover:text-axiom-text"
+              onClick={() => updateQuantity(productId, quantity + 1)}
+              aria-label="Augmenter"
+            >
+              <Plus className="h-3.5 w-3.5" />
+            </button>
+          </div>
+          <div className="text-right">
+            {customLot.discountPercent > 0 && (
+              <p className="font-mono text-[10px] text-axiom-muted line-through">
+                {formatPrice(customLot.subtotal * quantity)}
+              </p>
+            )}
+            <p className="font-display text-sm font-semibold">
+              {formatPrice(customLot.total * quantity)}
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const product = getProductById(productId);
   if (!product) return null;
 
   let unitPrice = product.price;

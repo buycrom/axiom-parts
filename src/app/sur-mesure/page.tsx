@@ -4,7 +4,7 @@ import { CustomQuoteForm } from "@/components/forms/CustomQuoteForm";
 export const metadata: Metadata = {
   title: "Sur mesure",
   description:
-    "Demandez une pièce personnalisée : décrivez votre besoin, joignez une photo et des dimensions.",
+    "Demandez une pièce personnalisée : joignez votre fichier 3D (STL, 3MF, OBJ…), une photo et des dimensions.",
 };
 
 export default function SurMesurePage() {
@@ -17,8 +17,9 @@ export default function SurMesurePage() {
             Vous ne trouvez pas votre pièce ?
           </h1>
           <p className="mt-4 text-base leading-relaxed text-axiom-muted md:text-lg">
-            Envoyez-nous votre besoin, une photo et quelques dimensions. Nous
-            étudierons la possibilité de fabriquer une pièce adaptée.
+            Envoyez-nous votre besoin, votre fichier d&apos;impression 3D, une
+            photo et quelques dimensions. Nous étudierons la possibilité de
+            fabriquer une pièce adaptée.
           </p>
           <ul className="mt-8 space-y-3 text-sm text-axiom-muted">
             <li className="flex gap-2">
@@ -31,10 +32,14 @@ export default function SurMesurePage() {
             </li>
             <li className="flex gap-2">
               <span className="text-axiom-accent">03</span>
-              Joignez une photo ou un schéma
+              Joignez votre fichier 3D (STL, 3MF, OBJ…)
             </li>
             <li className="flex gap-2">
               <span className="text-axiom-accent">04</span>
+              Ajoutez une photo ou un schéma si besoin
+            </li>
+            <li className="flex gap-2">
+              <span className="text-axiom-accent">05</span>
               Nous revenons vers vous pour un devis
             </li>
           </ul>

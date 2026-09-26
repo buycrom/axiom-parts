@@ -23,6 +23,7 @@ export function CategoriesSection() {
               description={cat.description}
               href={cat.href}
               index={i}
+              icon={cat.icon}
             />
           </Reveal>
         ))}

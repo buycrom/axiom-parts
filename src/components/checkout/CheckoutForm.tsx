@@ -67,6 +67,15 @@ export function CheckoutForm() {
       },
       shippingMethod: String(form.get("shipping")),
       items: items.map((i) => {
+        if (i.customLot) {
+          return {
+            productId: i.productId,
+            name: `Lot personnalisé (−${i.customLot.discountPercent}%)`,
+            quantity: i.quantity,
+            unitPrice: i.customLot.total,
+            customLot: i.customLot,
+          };
+        }
         const p = getProductById(i.productId);
         return {
           productId: i.productId,
@@ -167,10 +176,31 @@ export function CheckoutForm() {
         <p className="instrument-label mb-4">Récapitulatif</p>
         <ul className="space-y-3 border-b border-axiom-border pb-4">
           {items.map((item) => {
+            if (item.customLot) {
+              return (
+                <li
+                  key={item.productId}
+                  className="flex justify-between gap-2 text-sm"
+                >
+                  <span className="text-axiom-muted">
+                    {item.quantity}× Lot personnalisé
+                    {item.customLot.discountPercent > 0
+                      ? ` (−${item.customLot.discountPercent}%)`
+                      : ""}
+                  </span>
+                  <span>
+                    {formatPrice(item.customLot.total * item.quantity)}
+                  </span>
+                </li>
+              );
+            }
             const p = getProductById(item.productId);
             if (!p) return null;
             return (
-              <li key={`${item.productId}-${item.variantId}`} className="flex justify-between gap-2 text-sm">
+              <li
+                key={`${item.productId}-${item.variantId}`}
+                className="flex justify-between gap-2 text-sm"
+              >
                 <span className="text-axiom-muted">
                   {item.quantity}× {p.name}
                 </span>

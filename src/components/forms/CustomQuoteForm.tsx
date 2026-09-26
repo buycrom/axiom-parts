@@ -3,16 +3,23 @@
 import { useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
+import { FileBox, ImageIcon } from "lucide-react";
+
+const MODEL_ACCEPT =
+  ".stl,.3mf,.obj,.step,.stp,.iges,.igs,.amf,.zip,.rar";
+const MODEL_HINT =
+  "STL, 3MF, OBJ, STEP, IGES, AMF ou ZIP — max. recommandé 25 Mo";
 
 /**
  * Formulaire devis sur mesure.
- * Prêt à être branché sur une API / service email.
- * Remplacez handleSubmit par un appel fetch vers votre endpoint.
+ * Envoie FormData (texte + photo + fichier 3D) vers /api/quote.
  */
 export function CustomQuoteForm({ className }: { className?: string }) {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
     "idle"
   );
+  const [modelName, setModelName] = useState<string | null>(null);
+  const [imageName, setImageName] = useState<string | null>(null);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -28,6 +35,8 @@ export function CustomQuoteForm({ className }: { className?: string }) {
       if (!res.ok) throw new Error("quote failed");
       setStatus("success");
       form.reset();
+      setModelName(null);
+      setImageName(null);
     } catch {
       setStatus("error");
     }
@@ -68,36 +77,83 @@ export function CustomQuoteForm({ className }: { className?: string }) {
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
-        <Field label="Quantité" name="quantity" type="number" min="1" defaultValue="1" />
-        <div>
-          <label className="mb-2 block text-sm font-medium">
-            Photo / schéma
-          </label>
-          <input
-            type="file"
-            name="image"
-            accept="image/*,.pdf"
-            className={inputClass}
-          />
-          <p className="mt-1 font-mono text-[10px] text-axiom-muted">
-            JPG, PNG ou PDF — max. recommandé 5 Mo
-          </p>
-        </div>
+        <Field
+          label="Quantité"
+          name="quantity"
+          type="number"
+          min="1"
+          defaultValue="1"
+        />
+        <div />
+      </div>
+
+      {/* Fichier 3D */}
+      <div className="rounded-md border border-dashed border-axiom-border bg-axiom-bg p-4">
+        <label htmlFor="model3d" className="mb-2 flex items-center gap-2 text-sm font-medium">
+          <FileBox className="h-4 w-4 text-axiom-accent" />
+          Fichier 3D à envoyer
+          <span className="font-normal text-axiom-muted">(recommandé)</span>
+        </label>
+        <input
+          id="model3d"
+          type="file"
+          name="model3d"
+          accept={MODEL_ACCEPT}
+          className={inputClass}
+          onChange={(e) =>
+            setModelName(e.target.files?.[0]?.name ?? null)
+          }
+        />
+        <p className="mt-1 font-mono text-[10px] text-axiom-muted">
+          {MODEL_HINT}
+        </p>
+        {modelName && (
+          <p className="mt-2 text-sm text-axiom-accent">Fichier : {modelName}</p>
+        )}
+      </div>
+
+      {/* Photo / schéma */}
+      <div>
+        <label htmlFor="image" className="mb-2 flex items-center gap-2 text-sm font-medium">
+          <ImageIcon className="h-4 w-4 text-axiom-muted" />
+          Photo / schéma
+        </label>
+        <input
+          id="image"
+          type="file"
+          name="image"
+          accept="image/*,.pdf"
+          className={inputClass}
+          onChange={(e) =>
+            setImageName(e.target.files?.[0]?.name ?? null)
+          }
+        />
+        <p className="mt-1 font-mono text-[10px] text-axiom-muted">
+          JPG, PNG ou PDF — max. recommandé 5 Mo
+        </p>
+        {imageName && (
+          <p className="mt-2 text-sm text-axiom-muted">Fichier : {imageName}</p>
+        )}
       </div>
 
       <Field label="Message" name="message" as="textarea" rows={3} />
 
-      <Button type="submit" disabled={status === "loading"} className="w-full sm:w-auto">
+      <Button
+        type="submit"
+        disabled={status === "loading"}
+        className="w-full sm:w-auto"
+      >
         {status === "loading" ? "Envoi…" : "Demander un devis"}
       </Button>
 
       {status === "success" && (
         <p className="text-sm text-axiom-success" role="status">
-          Demande enregistrée (prototype). Branchez l&apos;API pour l&apos;envoi réel.
+          Demande enregistrée. Le fichier 3D et les infos seront transmis au
+          propriétaire (branchez l&apos;envoi email dans /api/quote).
         </p>
       )}
       {status === "error" && (
-        <p className="text-sm text-red-400" role="alert">
+        <p className="text-sm text-red-500" role="alert">
           Une erreur est survenue. Réessayez ou contactez-nous par email.
         </p>
       )}

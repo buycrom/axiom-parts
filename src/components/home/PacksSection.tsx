@@ -15,12 +15,17 @@ export function PacksSection() {
           <SectionHeader
             code="BUNDLE / 03"
             title="Équipez votre setup"
-            description="Des packs cohérents pour gagner du temps et économiser par rapport à l'achat séparé."
+            description="Des packs prêts à l'emploi, ou composez votre lot avec réduction selon la quantité."
             className="mb-0"
           />
-          <Link href="/packs" className="shrink-0">
-            <Button variant="outline">Tous les packs</Button>
-          </Link>
+          <div className="flex flex-wrap gap-3 shrink-0">
+            <Link href="/composer-lot">
+              <Button>Composer un lot</Button>
+            </Link>
+            <Link href="/packs">
+              <Button variant="outline">Tous les packs</Button>
+            </Link>
+          </div>
         </div>
       </Reveal>
       <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">

@@ -6,6 +6,7 @@ import { createPortal } from "react-dom";
 import { navLinks, siteConfig } from "@/lib/config";
 import { useCartStore } from "@/lib/cart-store";
 import { SearchBar } from "@/components/ui/SearchBar";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { cn } from "@/lib/utils";
 import { Menu, Search, ShoppingBag, X } from "lucide-react";
 
@@ -50,7 +51,7 @@ export function Header() {
     createPortal(
       <div
         className={cn(
-          "fixed inset-0 z-[100] lg:hidden",
+          "fixed inset-0 z-[100] xl:hidden",
           mobileOpen ? "pointer-events-auto" : "pointer-events-none"
         )}
         aria-hidden={!mobileOpen}
@@ -75,14 +76,17 @@ export function Header() {
             <span className="font-display text-lg font-bold">
               {siteConfig.name}
             </span>
-            <button
-              type="button"
-              onClick={() => setMobileOpen(false)}
-              aria-label="Fermer le menu"
-              className="rounded p-2 text-axiom-muted hover:bg-axiom-elevated hover:text-axiom-text"
-            >
-              <X className="h-5 w-5" />
-            </button>
+            <div className="flex items-center gap-1">
+              <ThemeToggle />
+              <button
+                type="button"
+                onClick={() => setMobileOpen(false)}
+                aria-label="Fermer le menu"
+                className="rounded p-2 text-axiom-muted hover:bg-axiom-elevated hover:text-axiom-text"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
           </div>
           <nav className="flex flex-col gap-1 overflow-y-auto px-3 py-4" aria-label="Mobile">
             {navLinks.map((link) => (
@@ -92,9 +96,22 @@ export function Header() {
                 onClick={() => setMobileOpen(false)}
                 className="rounded-md px-3 py-3 text-base text-axiom-text hover:bg-axiom-elevated"
               >
+                <span className="mr-2" aria-hidden>
+                  {link.icon}
+                </span>
                 {link.label}
               </Link>
             ))}
+            <Link
+              href="/composer-lot"
+              onClick={() => setMobileOpen(false)}
+              className="rounded-md px-3 py-3 text-base text-axiom-muted hover:bg-axiom-elevated"
+            >
+              <span className="mr-2" aria-hidden>
+                🧩
+              </span>
+              Composer un lot
+            </Link>
             <Link
               href="/contact"
               onClick={() => setMobileOpen(false)}
@@ -122,7 +139,7 @@ export function Header() {
           <div className="flex items-center gap-3">
             <button
               type="button"
-              className="rounded p-2 text-axiom-text lg:hidden"
+              className="rounded p-2 text-axiom-text xl:hidden"
               onClick={() => setMobileOpen(true)}
               aria-label="Ouvrir le menu"
               aria-expanded={mobileOpen}
@@ -140,19 +157,26 @@ export function Header() {
             </Link>
           </div>
 
-          <nav className="hidden items-center gap-1 lg:flex" aria-label="Principal">
+          <nav
+            className="hidden items-center gap-0.5 xl:flex"
+            aria-label="Principal"
+          >
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-md px-2.5 py-2 text-sm text-axiom-muted transition-colors hover:text-axiom-text"
+                className="rounded-md px-2 py-2 text-[13px] text-axiom-muted transition-colors hover:text-axiom-text"
               >
+                <span className="mr-1" aria-hidden>
+                  {link.icon}
+                </span>
                 {link.label}
               </Link>
             ))}
           </nav>
 
           <div className="flex items-center gap-1">
+            <ThemeToggle />
             <button
               type="button"
               onClick={() => setSearchOpen((v) => !v)}

@@ -8,12 +8,14 @@ export function CategoryCard({
   description,
   href,
   index,
+  icon,
 }: {
   code: string;
   title: string;
   description: string;
   href: string;
   index?: number;
+  icon?: string;
 }) {
   return (
     <Link
@@ -30,10 +32,16 @@ export function CategoryCard({
           <span className="instrument-label">{code}</span>
           <ArrowUpRight className="h-4 w-4 text-axiom-muted transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-axiom-accent" />
         </div>
-        {typeof index === "number" && (
-          <p className="mt-6 font-mono text-4xl text-axiom-border transition-colors group-hover:text-axiom-accent/30">
-            {String(index + 1).padStart(2, "0")}
+        {icon ? (
+          <p className="mt-6 text-3xl" aria-hidden>
+            {icon}
           </p>
+        ) : (
+          typeof index === "number" && (
+            <p className="mt-6 font-mono text-4xl text-axiom-border transition-colors group-hover:text-axiom-accent/30">
+              {String(index + 1).padStart(2, "0")}
+            </p>
+          )
         )}
       </div>
 
