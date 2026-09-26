@@ -25,6 +25,79 @@ export function productPlaceholder(
 
 export const products: Product[] = [
   {
+    id: "prod-tiller-winctrl",
+    slug: "support-tiller-winctrl",
+    name: "Support Tiller Winctrl",
+    shortDescription:
+      "Fixe votre tiller et votre stick Winwing côte à côte, de façon stable et ergonomique.",
+    purpose:
+      "Ce support assemble un tiller de direction au sol et un stick Winwing sur une même platine. Il maintient l'alignement des commandes, libère l'espace sur le bureau et facilite un setup cockpit plus propre et plus proche d'un poste de pilotage réel.",
+    howToUse:
+      "Fixez le support sur votre profil aluminium ou votre structure cockpit, montez le tiller et le stick Winwing sur la platine, puis ajustez la position pour un accès confortable en taxi et en vol.",
+    category: "flight-sim",
+    type: "support",
+    price: 34.9,
+    badge: "nouveau",
+    isNew: true,
+    isPopular: true,
+    images: [
+      {
+        src: "/products/support-tiller-winctrl/01-principal.png",
+        alt: "Support Tiller Winctrl — tiller et stick Winwing montés ensemble",
+        type: "alone",
+      },
+      {
+        src: "/products/support-tiller-winctrl/02-bureau.png",
+        alt: "Support Tiller Winctrl installé sur un bureau",
+        type: "installed",
+      },
+      {
+        src: "/products/support-tiller-winctrl/03-cockpit.png",
+        alt: "Support Tiller Winctrl monté sur profil cockpit",
+        type: "situ",
+      },
+      {
+        src: "/products/support-tiller-winctrl/04-detail.png",
+        alt: "Détail du tiller monté sur le Support Tiller Winctrl",
+        type: "detail",
+      },
+    ],
+    compatibleWith: [
+      { brand: "Winwing", model: "Ursa Minor" },
+      { brand: "Winwing", model: "Tiller / Nose Wheel Steering" },
+    ],
+    specs: {
+      material: "À confirmer",
+      dimensions: "À confirmer",
+      fabrication: "Fabrication soignée",
+      color: "Noir",
+      finish: "Platine de montage pour tiller + stick",
+    },
+    installationSteps: [
+      {
+        title: "Préparer la structure",
+        description:
+          "Identifiez le point de fixation (profil aluminium, edge mount ou structure cockpit).",
+      },
+      {
+        title: "Fixer le support",
+        description:
+          "Montez la platine Support Tiller Winctrl sur votre structure à l'aide des points prévus.",
+      },
+      {
+        title: "Installer les commandes",
+        description:
+          "Fixez le tiller et le stick Winwing sur la platine, puis vérifiez l'alignement et le confort d'accès.",
+      },
+    ],
+    relatedProductIds: ["demo-05", "demo-01"],
+    frequentlyBoughtWith: ["demo-05", "demo-03"],
+    inStock: true,
+    metaTitle: "Support Tiller Winctrl | AXIOM Flight Sim",
+    metaDescription:
+      "Support pour tiller et stick Winwing : montage stable, ergonomique, pensé pour les cockpits flight sim.",
+  },
+  {
     id: "demo-01",
     slug: "cache-protection-equipement",
     name: "Cache de protection pour votre équipement",
