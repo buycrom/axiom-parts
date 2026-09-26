@@ -14,7 +14,7 @@ export function CategoriesSection() {
           description="Choisissez une direction — chaque catégorie regroupe des pièces pensées pour un usage précis."
         />
       </Reveal>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
         {categories.map((cat, i) => (
           <Reveal key={cat.id} delay={i * 80}>
             <CategoryCard
@@ -23,7 +23,6 @@ export function CategoriesSection() {
               description={cat.description}
               href={cat.href}
               index={i}
-              icon={cat.icon}
             />
           </Reveal>
         ))}

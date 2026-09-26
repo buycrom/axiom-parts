@@ -1,6 +1,6 @@
 "use client";
 
-import { productTypes, categories } from "@/data/categories";
+import { productTypes, categories, sportSubcategories } from "@/data/categories";
 import { getCompatibilityOptions } from "@/data/products";
 import { cn } from "@/lib/utils";
 import { X } from "lucide-react";
@@ -8,6 +8,7 @@ import { useMemo } from "react";
 
 export interface FilterState {
   category: string;
+  sportSubcategory: string;
   type: string;
   brand: string;
   priceMax: number;
@@ -27,6 +28,7 @@ export type SortOption =
 
 export const defaultFilters: FilterState = {
   category: "",
+  sportSubcategory: "",
   type: "",
   brand: "",
   priceMax: 100,
@@ -76,7 +78,14 @@ export function ProductFilters({
       <FilterGroup label="Catégorie">
         <select
           value={filters.category}
-          onChange={(e) => set("category", e.target.value)}
+          onChange={(e) =>
+            onChange({
+              ...filters,
+              category: e.target.value,
+              sportSubcategory:
+                e.target.value === "sport" ? filters.sportSubcategory : "",
+            })
+          }
           className={selectClass}
         >
           <option value="">Toutes</option>
@@ -90,6 +99,23 @@ export function ProductFilters({
           <option value="packs">Packs</option>
         </select>
       </FilterGroup>
+
+      {filters.category === "sport" && (
+        <FilterGroup label="Sport">
+          <select
+            value={filters.sportSubcategory}
+            onChange={(e) => set("sportSubcategory", e.target.value)}
+            className={selectClass}
+          >
+            <option value="">Tous les sports</option>
+            {sportSubcategories.map((s) => (
+              <option key={s.id} value={s.id}>
+                {s.label}
+              </option>
+            ))}
+          </select>
+        </FilterGroup>
+      )}
 
       <FilterGroup label="Type de produit">
         <select

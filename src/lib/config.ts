@@ -27,11 +27,26 @@ export const lotDiscountTiers: LotDiscountTier[] = [
 ];
 
 export const navLinks = [
-  { href: "/flight-sim", label: "Flight Simulator", icon: "🛩️" },
-  { href: "/car-sim", label: "Car Simulator", icon: "🏎️" },
-  { href: "/packs", label: "Packs", icon: "📦" },
-  { href: "/pieces-pratiques", label: "Pièces pratiques", icon: "🔧" },
-  { href: "/boutique", label: "Boutique", icon: "🛍️" },
-  { href: "/sur-mesure", label: "Sur mesure", icon: "🛠️" },
-  { href: "/a-propos", label: "À propos", icon: "ℹ️" },
+  { href: "/boutique", label: "Boutique" },
+  { href: "/flight-sim", label: "Flight Simulator" },
+  { href: "/car-sim", label: "Car Simulator" },
+  {
+    href: "/sport",
+    label: "Sport",
+    children: [
+      { href: "/sport", label: "Tous les sports" },
+      { href: "/sport/tennis", label: "Tennis" },
+      { href: "/sport/rugby", label: "Rugby" },
+      { href: "/sport/football", label: "Football" },
+      { href: "/sport/basketball", label: "Basketball" },
+      { href: "/sport/golf", label: "Golf" },
+      { href: "/sport/cyclisme", label: "Cyclisme" },
+      { href: "/sport/course-a-pied", label: "Course à pied" },
+      { href: "/sport/fitness", label: "Fitness" },
+    ],
+  },
+  { href: "/packs", label: "Packs" },
+  { href: "/pieces-pratiques", label: "Pièces pratiques" },
+  { href: "/sur-mesure", label: "Sur mesure" },
+  { href: "/a-propos", label: "À propos" },
 ] as const;

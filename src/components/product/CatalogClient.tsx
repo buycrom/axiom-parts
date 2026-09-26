@@ -15,13 +15,16 @@ import { Button } from "@/components/ui/Button";
 export function CatalogClient({
   initialCategory,
   initialQuery,
+  initialSportSubcategory,
 }: {
   initialCategory?: string;
   initialQuery?: string;
+  initialSportSubcategory?: string;
 }) {
   const [filters, setFilters] = useState<FilterState>({
     ...defaultFilters,
     category: initialCategory ?? "",
+    sportSubcategory: initialSportSubcategory ?? "",
     query: initialQuery ?? "",
   });
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -35,6 +38,7 @@ export function CatalogClient({
         (p) =>
           p.name.toLowerCase().includes(q) ||
           p.shortDescription.toLowerCase().includes(q) ||
+          p.sportSubcategory?.includes(q) ||
           p.compatibleWith.some(
             (c) =>
               c.brand.toLowerCase().includes(q) ||
@@ -45,6 +49,11 @@ export function CatalogClient({
 
     if (filters.category) {
       list = list.filter((p) => p.category === filters.category);
+    }
+    if (filters.sportSubcategory) {
+      list = list.filter(
+        (p) => p.sportSubcategory === filters.sportSubcategory
+      );
     }
     if (filters.type) {
       list = list.filter((p) => p.type === filters.type);

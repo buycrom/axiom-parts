@@ -8,13 +8,16 @@ import { useCartStore } from "@/lib/cart-store";
 import { SearchBar } from "@/components/ui/SearchBar";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { cn } from "@/lib/utils";
-import { Menu, Search, ShoppingBag, X } from "lucide-react";
+import { ChevronDown, Menu, Search, ShoppingBag, X } from "lucide-react";
+
+type NavLink = (typeof navLinks)[number];
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [mobileSportOpen, setMobileSportOpen] = useState(false);
   const itemCount = useCartStore((s) => s.getItemCount());
   const openCart = useCartStore((s) => s.openCart);
 
@@ -90,26 +93,19 @@ export function Header() {
           </div>
           <nav className="flex flex-col gap-1 overflow-y-auto px-3 py-4" aria-label="Mobile">
             {navLinks.map((link) => (
-              <Link
+              <MobileNavItem
                 key={link.href}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className="rounded-md px-3 py-3 text-base text-axiom-text hover:bg-axiom-elevated"
-              >
-                <span className="mr-2" aria-hidden>
-                  {link.icon}
-                </span>
-                {link.label}
-              </Link>
+                link={link}
+                sportOpen={mobileSportOpen}
+                onToggleSport={() => setMobileSportOpen((v) => !v)}
+                onNavigate={() => setMobileOpen(false)}
+              />
             ))}
             <Link
               href="/composer-lot"
               onClick={() => setMobileOpen(false)}
               className="rounded-md px-3 py-3 text-base text-axiom-muted hover:bg-axiom-elevated"
             >
-              <span className="mr-2" aria-hidden>
-                🧩
-              </span>
               Composer un lot
             </Link>
             <Link
@@ -162,16 +158,7 @@ export function Header() {
             aria-label="Principal"
           >
             {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="rounded-md px-2 py-2 text-[13px] text-axiom-muted transition-colors hover:text-axiom-text"
-              >
-                <span className="mr-1" aria-hidden>
-                  {link.icon}
-                </span>
-                {link.label}
-              </Link>
+              <DesktopNavItem key={link.href} link={link} />
             ))}
           </nav>
 
@@ -210,5 +197,100 @@ export function Header() {
 
       {mobileMenu}
     </header>
+  );
+}
+
+function DesktopNavItem({ link }: { link: NavLink }) {
+  if (!("children" in link) || !link.children) {
+    return (
+      <Link
+        href={link.href}
+        className="rounded-md px-2 py-2 text-[13px] text-axiom-muted transition-colors hover:text-axiom-text"
+      >
+        {link.label}
+      </Link>
+    );
+  }
+
+  return (
+    <div className="group relative">
+      <Link
+        href={link.href}
+        className="inline-flex items-center gap-1 rounded-md px-2 py-2 text-[13px] text-axiom-muted transition-colors hover:text-axiom-text"
+      >
+        {link.label}
+        <ChevronDown className="h-3.5 w-3.5 opacity-60 transition-transform group-hover:rotate-180" />
+      </Link>
+      <div className="invisible absolute left-0 top-full z-50 min-w-[200px] pt-1 opacity-0 transition-all group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+        <div className="overflow-hidden rounded-md border border-axiom-border bg-axiom-surface py-1 shadow-xl">
+          {link.children.map((child) => (
+            <Link
+              key={child.href}
+              href={child.href}
+              className="block px-4 py-2.5 text-sm text-axiom-muted transition-colors hover:bg-axiom-elevated hover:text-axiom-text"
+            >
+              {child.label}
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MobileNavItem({
+  link,
+  sportOpen,
+  onToggleSport,
+  onNavigate,
+}: {
+  link: NavLink;
+  sportOpen: boolean;
+  onToggleSport: () => void;
+  onNavigate: () => void;
+}) {
+  if (!("children" in link) || !link.children) {
+    return (
+      <Link
+        href={link.href}
+        onClick={onNavigate}
+        className="rounded-md px-3 py-3 text-base text-axiom-text hover:bg-axiom-elevated"
+      >
+        {link.label}
+      </Link>
+    );
+  }
+
+  return (
+    <div>
+      <button
+        type="button"
+        onClick={onToggleSport}
+        className="flex w-full items-center justify-between rounded-md px-3 py-3 text-base text-axiom-text hover:bg-axiom-elevated"
+        aria-expanded={sportOpen}
+      >
+        {link.label}
+        <ChevronDown
+          className={cn(
+            "h-4 w-4 text-axiom-muted transition-transform",
+            sportOpen && "rotate-180"
+          )}
+        />
+      </button>
+      {sportOpen && (
+        <div className="ml-2 space-y-0.5 border-l border-axiom-border pl-2">
+          {link.children.map((child) => (
+            <Link
+              key={child.href}
+              href={child.href}
+              onClick={onNavigate}
+              className="block rounded-md px-3 py-2.5 text-sm text-axiom-muted hover:bg-axiom-elevated hover:text-axiom-text"
+            >
+              {child.label}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }

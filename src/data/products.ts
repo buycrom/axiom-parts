@@ -396,6 +396,165 @@ export const products: Product[] = [
     metaDescription:
       "Supports + passe-câbles + organiseurs pour un setup ordonné.",
   },
+  {
+    id: "demo-09",
+    slug: "support-raquette-tennis",
+    name: "Support mural pour raquette de tennis",
+    shortDescription:
+      "Range votre raquette de façon stable et accessible.",
+    purpose:
+      "Libère l'espace au sol et maintient la raquette en sécurité entre les sessions.",
+    howToUse:
+      "Fixez le support au mur, puis posez la raquette dans le logement prévu.",
+    category: "sport",
+    sportSubcategory: "tennis",
+    type: "support",
+    price: 16.9,
+    badge: "nouveau",
+    isNew: true,
+    images: [
+      {
+        src: productPlaceholder("Support tennis"),
+        alt: "Support raquette tennis [DÉMO]",
+        type: "alone",
+      },
+    ],
+    compatibleWith: [{ brand: "Universel", model: "Raquette tennis" }],
+    specs: {
+      material: "À définir",
+      fabrication: "Fabrication sur demande",
+      color: "Noir",
+    },
+    inStock: true,
+    metaTitle: "Support raquette tennis | AXIOM",
+    metaDescription:
+      "Range votre raquette de tennis de façon stable et accessible.",
+  },
+  {
+    id: "demo-10",
+    slug: "organiseur-equipement-rugby",
+    name: "Organiseur d'équipement rugby",
+    shortDescription:
+      "Regroupe protège-dents, scratchs et petits accessoires.",
+    purpose:
+      "Évite de chercher vos accessoires avant l'entraînement ou le match.",
+    howToUse:
+      "Placez chaque accessoire dans le compartiment prévu, rangez dans le sac.",
+    category: "sport",
+    sportSubcategory: "rugby",
+    type: "organisation",
+    price: 12.9,
+    badge: "populaire",
+    isPopular: true,
+    images: [
+      {
+        src: productPlaceholder("Orga rugby"),
+        alt: "Organiseur rugby [DÉMO]",
+        type: "alone",
+      },
+    ],
+    compatibleWith: [{ brand: "Universel", model: "Équipement rugby" }],
+    specs: {
+      material: "À définir",
+      fabrication: "Fabrication sur demande",
+    },
+    inStock: true,
+    metaTitle: "Organiseur équipement rugby | AXIOM",
+    metaDescription:
+      "Regroupe vos petits accessoires rugby pour un accès rapide.",
+  },
+  {
+    id: "demo-11",
+    slug: "support-ballon-football",
+    name: "Support de rangement pour ballon",
+    shortDescription:
+      "Maintient le ballon en place sans l'écraser.",
+    purpose:
+      "Isole le ballon du sol et facilite le rangement dans un local ou un garage.",
+    howToUse: "Posez le support, placez le ballon dans le berceau.",
+    category: "sport",
+    sportSubcategory: "football",
+    type: "support",
+    price: 14.5,
+    images: [
+      {
+        src: productPlaceholder("Support ballon"),
+        alt: "Support ballon football [DÉMO]",
+        type: "alone",
+      },
+    ],
+    compatibleWith: [{ brand: "Universel", model: "Ballon taille 5" }],
+    specs: {
+      material: "À définir",
+      fabrication: "Fabrication sur demande",
+    },
+    inStock: true,
+    metaTitle: "Support ballon football | AXIOM",
+    metaDescription: "Maintient le ballon en place sans l'écraser.",
+  },
+  {
+    id: "demo-12",
+    slug: "passe-cable-velo",
+    name: "Guide-câble pour vélo",
+    shortDescription:
+      "Maintient les gaines et câbles le long du cadre.",
+    purpose:
+      "Réduit le frottement et l'usure des câbles sur les points de contact du cadre.",
+    howToUse:
+      "Clipsez le guide sur le cadre aux points indiqués, passez le câble.",
+    category: "sport",
+    sportSubcategory: "cyclisme",
+    type: "organisation",
+    price: 8.9,
+    isNew: true,
+    badge: "nouveau",
+    images: [
+      {
+        src: productPlaceholder("Guide vélo"),
+        alt: "Guide-câble vélo [DÉMO]",
+        type: "alone",
+      },
+    ],
+    compatibleWith: [{ brand: "Universel", model: "Cadre vélo" }],
+    specs: {
+      material: "À définir",
+      fabrication: "Fabrication sur demande",
+    },
+    inStock: true,
+    metaTitle: "Guide-câble vélo | AXIOM",
+    metaDescription:
+      "Maintient les gaines et câbles le long du cadre de vélo.",
+  },
+  {
+    id: "demo-13",
+    slug: "support-halteres-fitness",
+    name: "Support de rangement haltères",
+    shortDescription:
+      "Stabilise vos haltères et libère l'espace au sol.",
+    purpose:
+      "Organise les haltères dans un espace dédié pour un accès rapide à l'entraînement.",
+    howToUse: "Positionnez le support, placez les haltères dans les logements.",
+    category: "sport",
+    sportSubcategory: "fitness",
+    type: "support",
+    price: 24.9,
+    images: [
+      {
+        src: productPlaceholder("Support haltères"),
+        alt: "Support haltères [DÉMO]",
+        type: "alone",
+      },
+    ],
+    compatibleWith: [{ brand: "Universel", model: "Haltères" }],
+    specs: {
+      material: "À définir",
+      fabrication: "Fabrication sur demande",
+    },
+    inStock: true,
+    metaTitle: "Support haltères fitness | AXIOM",
+    metaDescription:
+      "Stabilise vos haltères et libère l'espace au sol.",
+  },
 ];
 
 export function getProductById(id: string): Product | undefined {

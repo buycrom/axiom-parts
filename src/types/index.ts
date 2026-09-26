@@ -5,7 +5,19 @@ export type ProductCategory =
   | "car-sim"
   | "pieces-pratiques"
   | "packs"
+  | "sport"
   | "sur-mesure";
+
+/** Sous-catégories Sport — étendre librement */
+export type SportSubcategory =
+  | "tennis"
+  | "rugby"
+  | "football"
+  | "basketball"
+  | "golf"
+  | "cyclisme"
+  | "course-a-pied"
+  | "fitness";
 
 export type ProductType =
   | "protection"
@@ -62,6 +74,8 @@ export interface Product {
   /** Comment l'utiliser */
   howToUse: string;
   category: ProductCategory;
+  /** Requis si category === "sport" */
+  sportSubcategory?: SportSubcategory;
   type: ProductType;
   price: number;
   compareAtPrice?: number;

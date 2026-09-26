@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/boutique",
     "/flight-sim",
     "/car-sim",
+    "/sport",
     "/pieces-pratiques",
     "/packs",
     "/composer-lot",
@@ -21,6 +22,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: path === "" ? 1 : 0.8,
   }));
 
+  const sportRoutes = [
+    "tennis",
+    "rugby",
+    "football",
+    "basketball",
+    "golf",
+    "cyclisme",
+    "course-a-pied",
+    "fitness",
+  ].map((sub) => ({
+    url: `${base}/sport/${sub}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
   const productRoutes = products.map((p) => ({
     url: `${base}/produit/${p.slug}`,
     lastModified: new Date(),
@@ -28,5 +45,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticRoutes, ...productRoutes];
+  return [...staticRoutes, ...sportRoutes, ...productRoutes];
 }
