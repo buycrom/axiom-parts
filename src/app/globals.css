@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@theme {
+  --color-axiom-bg: #0e1013;
+  --color-axiom-surface: #161a1f;
+  --color-axiom-elevated: #1c2128;
+  --color-axiom-border: #2a3139;
+  --color-axiom-muted: #8b939e;
+  --color-axiom-text: #f2f4f6;
+  --color-axiom-accent: #ff6b2c;
+  --color-axiom-accent-hover: #ff824d;
+  --color-axiom-accent-dim: rgba(255, 107, 44, 0.12);
+  --color-axiom-cream: #f4f5f7;
+  --color-axiom-cream-text: #12151a;
+  --color-axiom-success: #3dd68c;
+
+  --font-display: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-ibm-plex), ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-axiom-bg text-axiom-text font-body antialiased;
+  }
+
+  ::selection {
+    background: var(--color-axiom-accent);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-axiom-accent);
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .instrument-label {
+    @apply font-mono text-[10px] uppercase tracking-[0.18em] text-axiom-muted;
+  }
+
+  .section-pad {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-axiom {
+    @apply mx-auto w-full max-w-7xl;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s ease-out both;
+}
